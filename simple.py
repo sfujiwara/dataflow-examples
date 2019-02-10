@@ -26,7 +26,7 @@ inputs = [
 
 (p | "Read" >> beam.Create(inputs)
    | "Add10" >> beam.Map(add10)
-   | "Write" >> beam.io.WriteToText("results/simple/simple.txt"))
+   | "Write" >> beam.io.WriteToText("gs://kaggle-playground-dataflow/resutls/simple.txt"))
 
 # p.run().wait_until_finish()
 p.run()
