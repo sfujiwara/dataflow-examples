@@ -6,7 +6,15 @@ def add10(element):
     return element
 
 
-p = beam.Pipeline()
+options = beam.options.pipeline_options.PipelineOptions()
+gcloud_options = options.view_as(beam.options.pipeline_options.GoogleCloudOptions)
+gcloud_options.job_name = "unko"
+gcloud_options.project = "kaggle-playground"
+gcloud_options.staging_location = "gs://kaggle-playground-dataflow/staging"
+gcloud_options.temp_location = "gs://kaggle-playground-dataflow/temp"
+options.view_as(beam.options.pipeline_options.StandardOptions).runner = "DataflowRunner"
+
+p = beam.Pipeline(options=options)
 
 inputs = [
     {"key": 0, "value": 0},
@@ -20,4 +28,5 @@ inputs = [
    | "Add10" >> beam.Map(add10)
    | "Write" >> beam.io.WriteToText("results/simple/simple.txt"))
 
-p.run().wait_until_finish()
+# p.run().wait_until_finish()
+p.run()
