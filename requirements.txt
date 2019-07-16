@@ -1,1 +1,2 @@
 apache-beam[gcp]
+mecab-python3

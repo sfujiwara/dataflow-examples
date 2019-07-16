@@ -8,8 +8,14 @@ class build(_build):
 
 
 CUSTOM_COMMANDS = [
-    (["sudo", "apt-get", "update"], "."),
-    (["sudo", "apt-get", "install", "git", "build-essential", "libatlas-base-dev", "-y"], "."),
+    # (["sudo", "apt-get", "update"], "."),
+    # Install MeCab
+    (['sudo', 'apt-get', 'install', '-y', 'mecab'], '.'),
+    (['sudo', 'apt-get', 'install', '-y', 'libmecab-dev'], '.'),
+    (['sudo', 'apt-get', 'install', '-y', 'mecab-ipadic-utf8'], '.'),
+    # Install NEologd
+    (['git', 'clone', '--depth', '1', 'https://github.com/neologd/mecab-ipadic-neologd.git'], '.'),
+    (['./bin/install-mecab-ipadic-neologd', '-n', '-y'], 'mecab-ipadic-neologd')
 ]
 
 
@@ -32,13 +38,13 @@ class CustomCommands(setuptools.Command):
             self.RunCustomCommand(command)
 
 
-REQUIRED_PACKAGES = []
-
 setuptools.setup(
     name='mecab-install-example',
     version='0.0.1',
     packages=setuptools.find_packages(),
-    #install_requires=REQUIRED_PACKAGES,
+    install_requires=[
+        'mecab-python3'
+    ],
     cmdclass={
         'build': build,
         'CustomCommands': CustomCommands,
