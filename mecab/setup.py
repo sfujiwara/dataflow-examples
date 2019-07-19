@@ -4,7 +4,7 @@ import setuptools
 
 
 CUSTOM_COMMANDS = [
-    (["sudo", "apt-get", "update"], "."),
+    (['sudo', 'apt-get', 'update'], '.'),
     # Install MeCab
     (['sudo', 'apt-get', 'install', '-y', 'mecab'], '.'),
     (['sudo', 'apt-get', 'install', '-y', 'libmecab-dev'], '.'),
