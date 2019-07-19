@@ -10,8 +10,8 @@ CUSTOM_COMMANDS = [
     (['sudo', 'apt-get', 'install', '-y', 'libmecab-dev'], '.'),
     (['sudo', 'apt-get', 'install', '-y', 'mecab-ipadic-utf8'], '.'),
     # Install NEologd
-    (['git', 'clone', '--depth', '1', 'https://github.com/neologd/mecab-ipadic-neologd.git'], '.'),
-    (['./bin/install-mecab-ipadic-neologd', '-n', '-y'], 'mecab-ipadic-neologd')
+    (['git', 'clone', '--depth', '1', '-b', 'v0.0.6', 'https://github.com/neologd/mecab-ipadic-neologd.git'], '.'),
+    (['./bin/install-mecab-ipadic-neologd', '-y'], 'mecab-ipadic-neologd')
 ]
 
 
@@ -49,7 +49,7 @@ setuptools.setup(
     version='0.0.1',
     packages=setuptools.find_packages(),
     install_requires=[
-        'mecab-python3'
+        'mecab-python3==0.996.2'
     ],
     cmdclass={
         'build': build,
