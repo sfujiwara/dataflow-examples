@@ -37,7 +37,6 @@ def main():
     setup_options = options.view_as(SetupOptions)
     setup_file_path = os.path.join(os.path.dirname(__file__), '..', 'setup.py')
     print(setup_file_path)
-    # setup_options.setup_file = './setup.py'
     setup_options.setup_file = os.path.join(os.path.dirname(__file__), '..', 'setup.py')
 
     # worker options
