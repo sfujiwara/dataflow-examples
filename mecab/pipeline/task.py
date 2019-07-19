@@ -1,3 +1,4 @@
+import os
 import apache_beam as beam
 from apache_beam.options.pipeline_options import PipelineOptions
 from apache_beam.options.pipeline_options import SetupOptions
@@ -5,8 +6,7 @@ from apache_beam.options.pipeline_options import SetupOptions
 from apache_beam.options.pipeline_options import WorkerOptions
 
 
-def wakati(text):
-    # type: (str) -> str
+def wakati(text: str) -> str:
     """
     Parameters
     ----------
@@ -35,7 +35,10 @@ def main():
 
     # setup options
     setup_options = options.view_as(SetupOptions)
-    setup_options.setup_file = './setup.py'
+    setup_file_path = os.path.join(os.path.dirname(__file__), '..', 'setup.py')
+    print(setup_file_path)
+    # setup_options.setup_file = './setup.py'
+    setup_options.setup_file = os.path.join(os.path.dirname(__file__), '..', 'setup.py')
 
     # worker options
     worker_options = options.view_as((WorkerOptions))
